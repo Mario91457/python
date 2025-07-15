@@ -30,13 +30,14 @@ def putValues():
             trayectoria.append(num)
 
 def calculate(m, v0, g, h_increse):
-    Et = 0.5 * m * (v0 ** 2) + m * g * trayectoria[0]
-    print(f"Energia total inicial (Et): {Et}\n")
+    h_ref = trayectoria[0]
+    Et = 0.5 * m * (v0 ** 2) + m * g * (trayectoria[0] - h_ref)
+    print(f"Energia total inicial (Et): {Et:.2f}\n")
 
     for index in range(len(trayectoria) - 1):
-        height = trayectoria[index]
-        next_height = trayectoria[index + 1]
-        print(f"Desde {height} a {next_height}")
+        height = trayectoria[index] - h_ref
+        next_height = trayectoria[index + 1] - h_ref
+        print(f"Desde {trayectoria[index]:.2f} a {trayectoria[index + 1]:.2f} (relativo: {height:.2f} a {next_height:.2f})")
 
         h = height
         h_increment = h_increse if next_height > height else -h_increse
@@ -48,7 +49,7 @@ def calculate(m, v0, g, h_increse):
                 print(f"    No hay energia cinetica para llegar al siguente punto")
                 break
             v = math.sqrt(2 * Ec / m)
-            print(f"  Altura {h:.2f} -> Ep={Ep:.2f}, Ec={Ec:.2f}, v={v:.2f}")
+            print(f"  Altura relativa {h:.2f} (real: {h + h_ref:.2f}) -> Ep={Ep:.2f}, Ec={Ec:.2f}, v={v:.2f}")
             h += h_increment
 
 def init():
