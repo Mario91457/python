@@ -63,3 +63,4 @@ def init():
     calculate(m, v0, g, h_increment)
 
 init()
+
