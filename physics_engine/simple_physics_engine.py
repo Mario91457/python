@@ -18,8 +18,8 @@ FRICTION = 1 #not used
 GRAVITY = Vector2(0, 0)
 
 CELL_SIZE = SIZE * 2
-gridW = canvas.winfo_width() // CELL_SIZE
-gridH = canvas.winfo_height() // CELL_SIZE
+gridW = (canvas.winfo_width() // CELL_SIZE)+1
+gridH = (canvas.winfo_height() // CELL_SIZE)+1
 lastTime = time()
 
 grid_rects = {}
